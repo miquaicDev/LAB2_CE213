@@ -1,0 +1,17 @@
+# ModelSim
+work/
+mti_lib/
+transcript
+*.wlf
+*.log
+*.vcd
+*.mti
+
+# temporary files
+*.tmp
+*.bak
+
+# OS
+.DS_Store
+Thumbs.db
+
