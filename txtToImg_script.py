@@ -4,7 +4,7 @@ import numpy as np
 # 1. Đọc file txt (hex, mỗi dòng 1 pixel)
 data = []
 
-with open('pic_input.txt', 'r') as f:
+with open('pic_output.txt', 'r') as f:
     for line in f:
         line = line.strip()
         if line:  # bỏ dòng rỗng
@@ -18,8 +18,8 @@ if len(data) == 0:
 else:
     # ⚠️ PHẢI biết kích thước ảnh
     # 👉 sửa tay hoặc truyền từ file nếu có
-    rows = 554   # chỉnh lại cho đúng
-    cols = 430   # chỉnh lại cho đúng
+    rows = 552   # chỉnh lại cho đúng
+    cols = 428   # chỉnh lại cho đúng
 
     if len(data) != rows * cols:
         print("Sai kích thước ảnh! Số pixel không khớp.")

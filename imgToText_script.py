@@ -3,7 +3,7 @@ import numpy as np
 
 # 1. Đọc ảnh vào dưới dạng Grayscale (ảnh xám)
 # cv2.IMREAD_GRAYSCALE đảm bảo ảnh chỉ có 1 kênh màu (0-255)
-img = cv2.imread('baitap1_anhgoc.jpg', cv2.IMREAD_GRAYSCALE)
+img = cv2.imread('baitap1_nhieu.jpg', cv2.IMREAD_GRAYSCALE)
 
 if img is None:
     print("Không tìm thấy file ảnh!")
