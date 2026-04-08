@@ -1,16 +1,16 @@
-// this does not use for loop but concatenation
 // reset asynchronous active low
+// use concatenation for lineBuffer
 module window3x3#(parameter IMG_W=430, IMG_H=554)(
     clk, rst_n, pixel, valid_input, valid_output,
-    p11, p12, p13, p21, p22, p23, p31, p32, p33
+    p11, p12, p13, p21, p22, p23, p31, p32, p33, x, y
 );
     input clk, rst_n, valid_input;
     input [7:0]pixel;
     output reg [7:0]p11, p12, p13, p21, p22, p23, p31, p32, p33;
     output reg valid_output;
+    output [9:0]x, y;
 
     wire valid_out_pos;
-    wire [9:0]x, y;
     reg [(8*IMG_W)-1:0] lineBuffer1, lineBuffer2;
 
     position#(.IMG_W(IMG_W), .IMG_H(IMG_H))pos(

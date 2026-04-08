@@ -13,36 +13,45 @@ module tb_topmodule();
         .valid_output(valid_output)
     );
 
-    reg [7:0] mem [0:IMG_W*IMG_H-1];
-    integer i;
-    integer file_out;
-
     initial clk=0;
     always #5 clk=~clk;
+    reg [7:0] mem [0:IMG_W*IMG_H-1];
+    integer file_out;
+    integer i;
+
     initial begin
         $readmemh("pic_input.txt", mem);
         file_out = $fopen("pic_output.txt", "w");
-        rst_n = 0;
+        rst_n=0;
         valid_input=0;
-        pixel_in=0;
-        #20;
+        #20
         rst_n=1;
-        #10;
+        #10
         valid_input=1;
         for(i=0; i<IMG_W*IMG_H; i=i+1)begin
             @(negedge clk);
-            pixel_in = mem[i];
+            pixel_in <= mem[i];
+        end
+
+        //flush
+        for(i=0; i<IMG_W+1+3; i=i+1)begin
+            @(negedge clk);
+            pixel_in <= 0;
         end
         @(negedge clk);
-        valid_input=0;
-        #500;
-        $fclose(file_out);
-        $display("DONE");
-        $stop;
+        valid_input = 0;
     end
+    integer pixel_count=0;
     always@(posedge clk)begin
         if(valid_output)begin
             $fdisplay(file_out, "%02x", pixel_out);
+            pixel_count = pixel_count+1;
+            if(pixel_count == IMG_W*IMG_H)begin
+                $display("DONE");
+                $fclose(file_out);
+                $stop;
+            end
         end
     end
+
 endmodule
