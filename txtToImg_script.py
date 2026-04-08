@@ -18,8 +18,8 @@ if len(data) == 0:
 else:
     # ⚠️ PHẢI biết kích thước ảnh
     # 👉 sửa tay hoặc truyền từ file nếu có
-    rows = 552   # chỉnh lại cho đúng
-    cols = 428   # chỉnh lại cho đúng
+    rows = 554   # chỉnh lại cho đúng
+    cols = 430   # chỉnh lại cho đúng
 
     if len(data) != rows * cols:
         print("Sai kích thước ảnh! Số pixel không khớp.")
