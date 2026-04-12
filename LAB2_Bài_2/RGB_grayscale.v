@@ -1,6 +1,6 @@
-module RGB (clk,rst_n,data_in,Bright, Y);
 
-input wire signed [8:0] Bright;
+module RGB_to_Grayscale (clk,rst_n,data_in, pixel_grayscale);
+parameter signed Bright=0;
 input [23:0] data_in;
 input clk,rst_n;
 
@@ -8,7 +8,7 @@ wire [7:0] data_in_R = data_in[23:16];
 wire [7:0] data_in_G = data_in[15:8];
 wire [7:0] data_in_B = data_in[7:0];
 
-output reg [7:0] Y;
+output reg [7:0] pixel_grayscale;
 
 reg [10:0] R_out;
 reg [11:0] G_out;
@@ -44,14 +44,14 @@ always @(posedge clk or negedge rst_n) begin
 end
 always @(posedge clk or negedge rst_n) begin
     if(!rst_n)
-        Y <= 0;
+        pixel_grayscale<= 0;
     else begin
         if(state_2 > 10'sd255)
-            Y <= 8'd255;
+            pixel_grayscale <= 8'd255;
         else if(state_2 < 10'sd0)
-            Y <= 8'd0;
+            pixel_grayscale <= 8'd0;
         else
-            Y <= state_2[7:0];
+            pixel_grayscale <= state_2[7:0];
     end
 end
 endmodule
